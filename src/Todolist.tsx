@@ -1,7 +1,7 @@
 import React from 'react'
 import {Button} from "./Button";
 
-type TaskType = {
+export type TaskType = {
     id: number
     title: string
     isDone: boolean
@@ -10,16 +10,16 @@ type TaskType = {
 type PropsType = {
     title: string
     tasks: Array<TaskType>
-    data?: string
+    removeTask: (taskId: number) => void
 }
 
-export const Todolist = ({title, tasks, data}: PropsType) => {
+export const Todolist = ({title, tasks, removeTask}: PropsType) => {
     return (
         <div>
             <h3>{title}</h3>
             <div>
                 <input />
-                <Button title={'+'} />
+                <Button title={'+'} onClick={()=>{}}/>
             </div>
             {tasks.length === 0 ? (
                 <p>No tasks</p>
@@ -30,6 +30,7 @@ export const Todolist = ({title, tasks, data}: PropsType) => {
                             <li key={t.id}>
                                 <input type="checkbox" checked={t.isDone}/>
                                 <span>{t.title}</span>
+                                <Button title={'x'} onClick={()=>{removeTask(t.id)}} />
                             </li>
                         )
                     })}
@@ -37,11 +38,10 @@ export const Todolist = ({title, tasks, data}: PropsType) => {
             )}
 
             <div>
-                <Button title={'All'} />
-                <Button title={'Active'} />
-                <Button title={'Completed'} />
+                <Button title={'All'}  onClick={()=>{}}/>
+                <Button title={'Active'} onClick={()=>{}}/>
+                <Button title={'Completed'} onClick={()=>{}}/>
             </div>
-            <div>{data}</div>
         </div>
     )
 }
