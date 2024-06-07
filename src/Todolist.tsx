@@ -13,15 +13,16 @@ type PropsType = {
     tasks: Array<TaskType>
     removeTask: (taskId: string) => void
     changeFilter: (filter: FilterValuesType) => void
+    addTask:() => void
 }
 
-export const Todolist = ({title, tasks, removeTask, changeFilter}: PropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter, addTask}: PropsType) => {
     return (
         <div>
             <h3>{title}</h3>
             <div>
                 <input />
-                <Button title={'+'} onClick={()=>{}}/>
+                <Button title={'+'} onClick={addTask}/>
             </div>
             {tasks.length === 0 ? (
                 <p>No tasks</p>
