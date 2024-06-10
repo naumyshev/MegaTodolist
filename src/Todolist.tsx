@@ -32,6 +32,11 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask}: Prop
                 <input
                     value={taskTitle}
                     onChange={event => setTaskTitle(event.currentTarget.value)}
+                    onKeyUp={event => {
+                        if(event.key==='Enter') {
+                            addTaskHandler()
+                        }
+                    }}
                 />
                 <Button
                     title={'+'}
