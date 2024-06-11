@@ -14,9 +14,10 @@ type PropsType = {
     removeTask: (taskId: string) => void
     changeFilter: (filter: FilterValuesType) => void
     addTask:(taskTitle: string) => void
+    changeTaskStatus:(taskId: string, newStatus: boolean) => void
 }
 
-export const Todolist = ({title, tasks, removeTask, changeFilter, addTask}: PropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, changeTaskStatus}: PropsType) => {
 
     const [taskTitle, setTaskTitle] = useState('')
 
@@ -34,7 +35,6 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask}: Prop
             addTaskHandler()
         }
     }
-
 
     return (
         <div>
@@ -58,9 +58,18 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask}: Prop
                         const removeTaskHandler = () => {
                             removeTask(t.id)
                         }
+
+                        const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
+                            const newStatusValue = e.currentTarget.checked
+                            changeTaskStatus(t.id, newStatusValue)
+                        }
                         return(
                             <li key={t.id}>
-                                <input type="checkbox" checked={t.isDone}/>
+                                <input
+                                    type="checkbox"
+                                    checked={t.isDone}
+                                    onChange={changeTaskStatusHandler}
+                                />
                                 <span>{t.title}</span>
                                 <Button title={'x'} onClick={removeTaskHandler} />
                             </li>
