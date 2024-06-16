@@ -9,16 +9,17 @@ export type TaskType = {
 }
 
 type PropsType = {
+    todolistId: string
     title: string
     tasks: Array<TaskType>
     removeTask: (taskId: string) => void
-    changeFilter: (filter: FilterValuesType) => void
+    changeFilter: (filter: FilterValuesType, todolistId: string) => void
     addTask:(taskTitle: string) => void
     changeTaskStatus:(taskId: string, newStatus: boolean) => void
     filter: FilterValuesType
 }
 
-export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, changeTaskStatus, filter}: PropsType) => {
+export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, changeTaskStatus, filter, todolistId}: PropsType) => {
 
     const [taskTitle, setTaskTitle] = useState('')
     const [error, setError] = useState<string | null>(null)
@@ -41,6 +42,10 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, chang
         if(event.key==='Enter') {
             addTaskHandler()
         }
+    }
+
+    const changeFilterTasksHandler = (filter: FilterValuesType) => {
+        changeFilter(filter, todolistId)
     }
 
     return (
@@ -91,17 +96,17 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, chang
                 <Button
                     className={filter === 'all' ? 'active-filter' : ''}
                     title={'All'}
-                    onClick={()=>changeFilter('all')}
+                    onClick={()=>changeFilterTasksHandler('all')}
                 />
                 <Button
                     className={filter === 'active' ? 'active-filter' : ''}
                     title={'Active'}
-                    onClick={()=>changeFilter('active')}
+                    onClick={()=>changeFilterTasksHandler('active')}
                 />
                 <Button
                     className={filter === 'completed' ? 'active-filter' : ''}
                     title={'Completed'}
-                    onClick={()=>changeFilter('completed')}
+                    onClick={()=>changeFilterTasksHandler('completed')}
                 />
             </div>
         </div>
