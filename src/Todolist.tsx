@@ -15,7 +15,7 @@ type PropsType = {
     removeTask: (taskId: string, todolistId: string) => void
     changeFilter: (filter: FilterValuesType, todolistId: string) => void
     addTask:(taskTitle: string, todolistId: string) => void
-    changeTaskStatus:(taskId: string, newStatus: boolean) => void
+    changeTaskStatus:(taskId: string, newStatus: boolean, todolistId: string) => void
     filter: FilterValuesType
 }
 
@@ -75,7 +75,7 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask, chang
 
                         const changeTaskStatusHandler = (e: ChangeEvent<HTMLInputElement>) => {
                             const newStatusValue = e.currentTarget.checked
-                            changeTaskStatus(t.id, newStatusValue)
+                            changeTaskStatus(t.id, newStatusValue, todolistId)
                         }
                         return(
                             <li key={t.id} className={t.isDone ? 'is-done' : ''}>
