@@ -32,8 +32,8 @@ function App() {
             { id: v1(), title: 'ReactJS', isDone: false },
         ],
         [todolistId2]: [
-            { id: v1(), title: 'Rest API', isDone: true },
-            { id: v1(), title: 'GraphQL', isDone: false },
+            { id: v1(), title: 'Bread', isDone: true },
+            { id: v1(), title: 'Milk', isDone: false },
         ]
     })
 
@@ -45,9 +45,9 @@ function App() {
         setTodolists(todolists.map(tl => tl.id === todolistId ? {...tl, filter: filter} : tl))
     }
 
-    const addTask = (taskTitle: string) => {
+    const addTask = (taskTitle: string, todolistId: string) => {
         const newTask = {id: v1(), title: taskTitle, isDone: false}
-        //setTasks([newTask, ...tasks])
+        setTasks({...tasks, [todolistId]:[newTask, ...tasks[todolistId]]})
     }
 
     const changeTaskStatus = (taskId: string, newTaskStatus: boolean) => {
