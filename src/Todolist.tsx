@@ -25,11 +25,12 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
                              changeTaskStatus, filter, todolistId, removeTodolist}: PropsType) => {
 
 
-
-
-
     const changeFilterTasksHandler = (filter: FilterValuesType) => {
         changeFilter(filter, todolistId)
+    }
+
+    const addTaskTitleCallback = (title: string) => {
+        addTask(title, todolistId)
     }
 
     const removeTodolistHandler = () => {
@@ -43,7 +44,8 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
                 <Button title='x' onClick={removeTodolistHandler} />
             </div>
 
-            <AddItemForm addItem={()=>{}}/>
+            <AddItemForm addItem={addTaskTitleCallback}/>
+
             {tasks.length === 0 ? (
                 <p>No tasks</p>
             ) : (
