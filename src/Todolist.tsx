@@ -2,6 +2,7 @@ import React, {ChangeEvent, KeyboardEvent, useState} from 'react'
 import {Button} from "./Button";
 import {FilterValuesType} from "./App";
 import {AddItemForm} from "./AddItemForm";
+import {EditableSpan} from "./EditableSpan";
 
 export type TaskType = {
     id: string
@@ -66,7 +67,7 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
                                     checked={t.isDone}
                                     onChange={changeTaskStatusHandler}
                                 />
-                                <span>{t.title}</span>
+                                <EditableSpan value={t.title} />
                                 <Button title={'x'} onClick={removeTaskHandler} />
                             </li>
                         )
