@@ -96,7 +96,7 @@ function App() {
                         addTask={addTask}
                         changeTaskStatus={changeTaskStatus}
                         filter={td.filter}
-                        // removeTodolist={removeTodolist}
+                        removeTodolist={removeTodolist}
                     />
                 )
             })}
