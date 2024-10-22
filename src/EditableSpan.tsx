@@ -1,12 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 type EditableSpanPropsType = {
     value: string
 }
 
 export const EditableSpan = ({value}: EditableSpanPropsType) => {
-    return (
-        <span>{value}</span>
-    );
-};
 
+    const [editMode, setEditMode] = useState(false)
+
+    const activatedEditModeHandler = () => {
+        setEditMode(true)
+    }
+
+    return (
+        <>
+            {editMode ? (
+                <input value={value} autoFocus/>
+            ) : (
+                <span onDoubleClick={activatedEditModeHandler}>{value}</span>
+            )}
+        </>
+    )
+}
