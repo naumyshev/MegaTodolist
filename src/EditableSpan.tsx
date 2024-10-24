@@ -24,7 +24,7 @@ export const EditableSpan = ({value}: EditableSpanPropsType) => {
     return (
         <>
             {editMode ? (
-                <input value={value}
+                <input value={title}
                        onBlur={deactivatedEditModeHandler}
                        autoFocus
                        onChange={changeTitleHandler}
