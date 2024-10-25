@@ -20,10 +20,11 @@ type PropsType = {
     changeTaskStatus:(taskId: string, newStatus: boolean, todolistId: string) => void
     filter: FilterValuesType
     removeTodolist: (todolistId: string) => void
+    updateTask: (todolistId: string, taskId: string, title: string) => void
 }
 
 export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
-                             changeTaskStatus, filter, todolistId, removeTodolist}: PropsType) => {
+                             changeTaskStatus, filter, todolistId, removeTodolist, updateTask}: PropsType) => {
 
 
     const changeFilterTasksHandler = (filter: FilterValuesType) => {
@@ -60,6 +61,11 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
                             const newStatusValue = e.currentTarget.checked
                             changeTaskStatus(t.id, newStatusValue, todolistId)
                         }
+
+                        const changeTaskTitleHandler = (title: string) => {
+                            updateTask(todolistId, t.id, title)
+                        }
+
                         return(
                             <li key={t.id} className={t.isDone ? 'is-done' : ''}>
                                 <input
@@ -67,7 +73,7 @@ export const Todolist = ({title, tasks, removeTask, changeFilter, addTask,
                                     checked={t.isDone}
                                     onChange={changeTaskStatusHandler}
                                 />
-                                <EditableSpan value={t.title} />
+                                <EditableSpan value={t.title} onChange={changeTaskTitleHandler} />
                                 <Button title={'x'} onClick={removeTaskHandler} />
                             </li>
                         )
