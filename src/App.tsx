@@ -5,12 +5,12 @@ import {v1} from "uuid";
 import {AddItemForm} from "./AddItemForm";
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
-import Button from '@mui/material/Button'
 import IconButton from '@mui/material/IconButton'
 import MenuIcon from '@mui/icons-material/Menu'
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import Paper from '@mui/material/Paper'
+import { MenuButton } from './MenuButton'
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
@@ -94,11 +94,15 @@ function App() {
     return (
         <div>
             <AppBar position="static" sx={{mb: '30px'}}>
-                <Toolbar>
+                <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <IconButton color="inherit">
                         <MenuIcon/>
                     </IconButton>
-                    <Button color="inherit">Login</Button>
+                    <div>
+                        <MenuButton>Login</MenuButton>
+                        <MenuButton>Logout</MenuButton>
+                        <MenuButton>Faq</MenuButton>
+                    </div>
                 </Toolbar>
             </AppBar>
 

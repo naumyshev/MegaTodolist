@@ -9,6 +9,8 @@ import Checkbox from "@mui/material/Checkbox";
 import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Box from "@mui/material/Box";
+import {filterButtonsContainerSx, getListItemSx} from './Todolist.styles'
+
 
 export type TaskType = {
     id: string
@@ -87,11 +89,7 @@ export const Todolist = ({
                         return (
                             <ListItem
                                 key={t.id}
-                                sx={{
-                                    p: 0,
-                                    justifyContent: 'space-between',
-                                    opacity: t.isDone ? 0.5 : 1
-                                }}
+                                sx={getListItemSx(t.isDone)}
                             >
                                 <div>
                                     <Checkbox checked={t.isDone} onChange={changeTaskStatusHandler}/>
@@ -106,7 +104,7 @@ export const Todolist = ({
                 </List>
             )}
             <Box
-                sx={{display: 'flex', justifyContent: 'space-between'}}
+                sx={filterButtonsContainerSx}
             >
                 <div>
                     <Button
