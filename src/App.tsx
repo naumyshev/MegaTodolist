@@ -11,6 +11,7 @@ import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid2";
 import Paper from '@mui/material/Paper'
 import { MenuButton } from './MenuButton'
+import { createTheme, ThemeProvider } from '@mui/material/styles'
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
@@ -91,8 +92,10 @@ function App() {
         setTasks({...tasks, [todolistId]: []})
     }
 
+    const theme = createTheme({})
+
     return (
-        <div>
+        <ThemeProvider theme={theme}>
             <AppBar position="static" sx={{mb: '30px'}}>
                 <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <IconButton color="inherit">
@@ -101,7 +104,7 @@ function App() {
                     <div>
                         <MenuButton>Login</MenuButton>
                         <MenuButton>Logout</MenuButton>
-                        <MenuButton>Faq</MenuButton>
+                        <MenuButton background={''}>Faq</MenuButton>
                     </div>
                 </Toolbar>
             </AppBar>
@@ -147,7 +150,7 @@ function App() {
                     })}
                 </Grid>
             </Container>
-        </div>
+        </ThemeProvider>
     )
 }
 
