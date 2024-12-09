@@ -12,6 +12,8 @@ import Grid from "@mui/material/Grid2";
 import Paper from '@mui/material/Paper'
 import { MenuButton } from './MenuButton'
 import { createTheme, ThemeProvider } from '@mui/material/styles'
+import Switch from '@mui/material/Switch'
+import CssBaseline from '@mui/material/CssBaseline'
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
@@ -25,6 +27,8 @@ export type TodolistType = {
 export type TasksStateType = {
     [key: string]: TaskType[]
 }
+
+type ThemeMode = 'dark' | 'light'
 
 function App() {
 
@@ -47,6 +51,8 @@ function App() {
             {id: v1(), title: 'Milk', isDone: false},
         ]
     })
+
+    const [themeMode, setThemeMode] = useState<ThemeMode>('light')
 
     const removeTask = (taskId: string, todolistId: string) => {
         setTasks({...tasks, [todolistId]: tasks[todolistId].filter(t => t.id !== taskId)})
@@ -92,10 +98,22 @@ function App() {
         setTasks({...tasks, [todolistId]: []})
     }
 
-    const theme = createTheme({})
+    const theme = createTheme({
+        palette: {
+            mode: themeMode === 'light' ? 'light' : 'dark',
+            primary: {
+                main: '#087EA4',
+            },
+        },
+    })
+
+    const changeModeHandler = () => {
+        setThemeMode(themeMode == 'light' ? 'dark' : 'light')
+    }
 
     return (
         <ThemeProvider theme={theme}>
+            <CssBaseline />
             <AppBar position="static" sx={{mb: '30px'}}>
                 <Toolbar sx={{display: 'flex', justifyContent: 'space-between'}}>
                     <IconButton color="inherit">
@@ -104,10 +122,12 @@ function App() {
                     <div>
                         <MenuButton>Login</MenuButton>
                         <MenuButton>Logout</MenuButton>
-                        <MenuButton background={''}>Faq</MenuButton>
+                        <MenuButton>Faq</MenuButton>
+                        <Switch color={'default'} onChange={changeModeHandler} />
                     </div>
                 </Toolbar>
             </AppBar>
+            <CssBaseline />
 
             <Container fixed>
                 <Grid container sx={{mb: '30px'}}>
