@@ -16,6 +16,6 @@ const initialState: TodolistType[] = [
 ]
 
 
-export const todolistsReducer = (state: TodolistType[] = initialState, action: any) => {
+export const todolistsReducer = (state: TodolistType[] = initialState, action: ActionsType) => {
     return state
 }
