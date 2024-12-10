@@ -127,7 +127,6 @@ function App() {
                     </div>
                 </Toolbar>
             </AppBar>
-            <CssBaseline />
 
             <Container fixed>
                 <Grid container sx={{mb: '30px'}}>
