@@ -2,6 +2,11 @@
 import { TodolistType } from '../App'
 import { v1 } from 'uuid'
 
+type ActionsType = {
+    type: string
+    payload: any
+}
+
 let todolistID1 = v1()
 let todolistID2 = v1()
 
