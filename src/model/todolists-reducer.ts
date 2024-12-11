@@ -15,7 +15,15 @@ const initialState: TodolistType[] = [
     { id: todolistID2, title: 'What to buy', filter: 'all' },
 ]
 
-
 export const todolistsReducer = (state: TodolistType[] = initialState, action: ActionsType) => {
-    return state
+    switch (action.type) {
+        case 'REMOVE-TODOLIST': {
+            return state // логика по удалению тудулиста
+        }
+        case 'ADD-TODOLIST': {
+            return state // логика по добавлению тудулиста
+        }
+        default:
+            return state
+    }
 }
