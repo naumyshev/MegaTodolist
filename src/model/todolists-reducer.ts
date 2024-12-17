@@ -2,41 +2,6 @@
 import {FilterValuesType, TodolistType} from '../App'
 import { v1 } from 'uuid'
 
-export type RemoveTodolistActionType = {
-    type: 'REMOVE-TODOLIST'
-    payload: {
-        id: string
-    }
-}
-
-export type AddTodolistActionType = {
-    type: 'ADD-TODOLIST'
-    payload: {
-        title: string
-    }
-}
-
-export type ChangeTodolistTitleActionType = {
-    type: 'CHANGE-TODOLIST-TITLE'
-    payload: {
-        id: string
-        title: string
-    }
-}
-
-export type ChangeTodolistFilterActionType = {
-    type: 'CHANGE-TODOLIST-FILTER'
-    payload: {
-        id: string
-        filter: FilterValuesType
-    }
-}
-
-type ActionsType =
-    | RemoveTodolistActionType
-    | AddTodolistActionType
-    | ChangeTodolistTitleActionType
-    | ChangeTodolistFilterActionType
 
 let todolistID1 = v1()
 let todolistID2 = v1()
@@ -68,18 +33,29 @@ export const todolistsReducer = (state: TodolistType[] = initialState, action: A
     }
 }
 
-export const removeTodolistAC = (todolistId: string): RemoveTodolistActionType => {
+export const removeTodolistAC = (todolistId: string) => {
     return { type: 'REMOVE-TODOLIST', payload: {id: todolistId}} as const
 }
 
-export const addTodolistAC = (title: string): AddTodolistActionType => {
+export const addTodolistAC = (title: string) => {
     return { type: 'ADD-TODOLIST', payload: {title}} as const
 }
 
-export const changeTodolistTitleAC = (todolistId: string, title: string): ChangeTodolistTitleActionType=> {
+export const changeTodolistTitleAC = (todolistId: string, title: string) => {
     return { type: 'CHANGE-TODOLIST-TITLE', payload: {id: todolistId, title: title}} as const
 }
 
-export const changeTodolistFilterAC = (todolistId: string, filter: FilterValuesType): ChangeTodolistFilterActionType=> {
+export const changeTodolistFilterAC = (todolistId: string, filter: FilterValuesType) => {
     return { type: 'CHANGE-TODOLIST-FILTER', payload: {id: todolistId, filter}} as const
 }
+
+export type RemoveTodolistActionType = ReturnType<typeof removeTodolistAC>
+export type AddTodolistActionType = ReturnType<typeof addTodolistAC>
+export type ChangeTodolistTitleActionType = ReturnType<typeof changeTodolistTitleAC>
+export type ChangeTodolistFilterActionType = ReturnType<typeof changeTodolistFilterAC>
+
+type ActionsType =
+    | RemoveTodolistActionType
+    | AddTodolistActionType
+    | ChangeTodolistTitleActionType
+    | ChangeTodolistFilterActionType
