@@ -1,4 +1,4 @@
-import {addTaskAC, changeTaskStatusAC, removeTaskAC, tasksReducer} from './tasks-reducer'
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from './tasks-reducer'
 import { TasksStateType } from '../App'
 
 test('correct task should be deleted from correct array', () => {
