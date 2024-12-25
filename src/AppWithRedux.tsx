@@ -38,7 +38,7 @@ export type TasksStateType = {
 
 type ThemeMode = 'dark' | 'light'
 
-function AppWithReducer() {
+function AppWithRedux() {
 
     const todolistId1 = v1()
     const todolistId2 = v1()
@@ -175,4 +175,4 @@ function AppWithReducer() {
     )
 }
 
-export default AppWithReducer;
+export default AppWithRedux;
