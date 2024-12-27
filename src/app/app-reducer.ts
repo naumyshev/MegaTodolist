@@ -12,7 +12,8 @@ export const appReducer = (
 ): InitialState => {
     switch (action.type) {
         case 'CHANGE_THEME':
-            return {...state, themeMode: 'light' ? 'dark' : 'light'}
+             // return {...state, themeMode: 'light' ? 'dark' : 'light'}
+             return {...state, themeMode: action.themeMode === 'light' ? 'dark' : 'light'}
         default:
             return state
     }

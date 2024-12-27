@@ -1,7 +1,5 @@
-import React, {useReducer, useState} from 'react';
 import './App.css';
 import {TaskType, Todolist} from "../Todolist";
-import {v1} from "uuid";
 import {AddItemForm} from "../AddItemForm";
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -19,11 +17,11 @@ import {
     changeTodolistFilterAC,
     changeTodolistTitleAC,
     removeTodolistAC,
-    todolistsReducer
 } from "../model/todolists-reducer";
-import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC, tasksReducer} from "../model/tasks-reducer";
+import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "../model/tasks-reducer";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
+import {changeThemeAC} from "./app-reducer";
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
@@ -42,13 +40,11 @@ type ThemeMode = 'dark' | 'light'
 
 function App() {
 
-    const todolistId1 = v1()
-    const todolistId2 = v1()
 
     const todolists = useSelector<RootState, TodolistType[]>(state => state.todolists)
     const tasks = useSelector<RootState, TasksStateType>(state => state.tasks)
 
-    const [themeMode, setThemeMode] = useState<ThemeMode>('light')
+    const themeMode = useSelector<RootState, ThemeMode>(state => state.app.themeMode)
 
     const dispatch = useDispatch()
 
@@ -98,7 +94,7 @@ function App() {
     })
 
     const changeModeHandler = () => {
-        setThemeMode(themeMode == 'light' ? 'dark' : 'light')
+        dispatch(changeThemeAC(themeMode))
     }
 
     return (
@@ -137,7 +133,7 @@ function App() {
                         }
 
                         return (
-                            <Grid>
+                            <Grid key={td.id}>
                                 <Paper sx={{p: '0 20px 20px 20px'}}>
                                     <Todolist
                                         key={td.id}
