@@ -22,6 +22,7 @@ import {addTaskAC, changeTaskStatusAC, changeTaskTitleAC, removeTaskAC} from "..
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "./store";
 import {changeThemeAC} from "./app-reducer";
+import {getTheme} from "../common/theme/theme";
 
 
 export type FilterValuesType = 'all' | 'active' | 'completed'
@@ -45,6 +46,8 @@ function App() {
     const tasks = useSelector<RootState, TasksStateType>(state => state.tasks)
 
     const themeMode = useSelector<RootState, ThemeMode>(state => state.app.themeMode)
+
+    const theme = getTheme(themeMode)
 
     const dispatch = useDispatch()
 
