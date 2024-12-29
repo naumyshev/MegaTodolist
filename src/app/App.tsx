@@ -84,15 +84,6 @@ function App() {
         dispatch(action)
     }
 
-    const theme = createTheme({
-        palette: {
-            mode: themeMode === 'light' ? 'light' : 'dark',
-            primary: {
-                main: '#087EA4',
-            },
-        },
-    })
-
     const changeModeHandler = () => {
         dispatch(changeThemeAC(themeMode))
     }
