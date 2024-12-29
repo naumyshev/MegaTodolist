@@ -9,13 +9,8 @@ import List from '@mui/material/List'
 import ListItem from '@mui/material/ListItem'
 import Box from "@mui/material/Box";
 import {filterButtonsContainerSx, getListItemSx} from './Todolist.styles'
-import {FilterValuesType} from "./app/App";
-
-export type TaskType = {
-    id: string
-    title: string
-    isDone: boolean
-}
+import {FilterValuesType} from "./model/todolists-reducer";
+import {TaskType} from "./model/tasks-reducer";
 
 type PropsType = {
     todolistId: string
